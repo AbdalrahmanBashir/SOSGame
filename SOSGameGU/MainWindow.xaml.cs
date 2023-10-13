@@ -220,12 +220,10 @@ namespace SOSGameGU
             {
                 // Get the button that was clicked
                 Button cellButton = (Button)sender;
-
                 // Extract the row and column information from the button's Tag property
                 Tuple<int, int> cellPosition = (Tuple<int, int>)cellButton.Tag;
                 int row = cellPosition.Item1;
                 int col = cellPosition.Item2;
-
                 // Check if the cell is already filled
                 if (game.IsCellOccupied(row, col))
                 {
@@ -236,11 +234,8 @@ namespace SOSGameGU
 
                 game.MakeMove(row, col);
                 cellButton.Content = currentPlayerSymbol.ToString();
-
                 currentPlayerTurnName = (currentPlayerTurnName == player1Name) ? player2Name : player1Name;
                 txtCurrentPlayerTurn.Text = "Current Turn: " + currentPlayerTurnName;
-                // Update the current player
-                //game.SwitchPlayer();
             }
 
 

@@ -1,0 +1,101 @@
+<Window x:Class="SOSGameGU.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SOSGameGU"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Grid>
+
+
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <TextBlock Text="Select Game Mode:" />
+            <RadioButton Name="rbSimpleMode" Content="Simple" Checked="RadioButton_Checked_Game_Mode" IsChecked="True" />
+            <RadioButton Name="rbGeneralMode" Content="General" Checked="RadioButton_Checked_Game_Mode" />
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+            <TextBlock Text="Select Board Size:" />
+            <ComboBox Name="ddlBoardSize" Width="120">
+                <ComboBoxItem Content="3x3" />
+                <ComboBoxItem Content="4x4" />
+                <ComboBoxItem Content="5x5" />
+                <ComboBoxItem Content="6x6" />
+                <ComboBoxItem Content="7x7" />
+                <ComboBoxItem Content="8x8" />
+                <ComboBoxItem Content="9x9" />
+                <ComboBoxItem Content="10x10" />
+            </ComboBox>
+        </StackPanel>
+
+        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="229*" />
+                <ColumnDefinition Width="76*"/>
+                <ColumnDefinition Width="129*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="-300,152,300,-152">
+                <Label x:Name="lblPlayer1" Content="Blue Player:"/>
+                <TextBlock x:Name="txtPlayer1Score" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="rbPlayer1Human" Content="Human" Checked="RadioButton_PlayerType_Checked" GroupName="player1Type"/>
+                    <RadioButton x:Name="rbPlayer1Computer" Content="Computer" Checked="RadioButton_PlayerType_Checked" GroupName="player1Type"/>
+                </StackPanel>
+                <RadioButton x:Name="rbPlayer1S" Content="S" Checked="RadioButton_Checked" />
+                <RadioButton x:Name="rbPlayer1O" Content="O" Checked="RadioButton_Checked" />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Vertical" Margin="220,152,-300,-152">
+                <Label Name="lblPlayer2" Content="Red Player:" />
+                <TextBlock Name="txtPlayer2Score" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Name="rbPlayer2Human" Content="Human" Checked="RadioButton_PlayerType_Checked" GroupName="player2Type" />
+                    <RadioButton Name="rbPlayer2Computer" Content="Computer" Checked="RadioButton_PlayerType_Checked" GroupName="player2Type" />
+                </StackPanel>
+                <RadioButton Name="rbPlayer2S" Content="S" Checked="RadioButton_Checked" />
+                <RadioButton Name="rbPlayer2O" Content="O" Checked="RadioButton_Checked" />
+            </StackPanel>
+        </Grid>
+
+
+        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"/>
+        </Grid>
+
+
+
+        <Grid Name="GameGrid" Margin="10,80,10,10" Loaded="GameGrid_Loaded">
+
+
+            <Grid  Name="GameBoardGrid" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50" Tag="{Binding CellPosition}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400" />
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+            <Canvas Name="GameCanvas" Grid.Column="1"  HorizontalAlignment="Center"
+                VerticalAlignment="Center" Width="500" Height="500">
+                <!-- You can draw SOS lines here -->
+            </Canvas>
+
+        </Grid>
+
+
+        <Button x:Name="btnStartGame" Content="Start Game" Click="StartGame_Click" FontFamily="Arial Black" FontSize="16"
+            VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10"/>
+        <TextBlock Name="txtCurrentPlayerTurn" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" />
+    </Grid>
+
+</Window>
